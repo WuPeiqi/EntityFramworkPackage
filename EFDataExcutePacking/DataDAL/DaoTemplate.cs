@@ -170,7 +170,7 @@ namespace DataDAL
         #endregion
 
         /// <summary>
-        /// 获得一个实体的主键名称
+        /// 根据类型元数据获得一个实体的主键名称
         /// </summary>
         /// <param name="entityType">实体类的类型信息对象</param>
         /// <returns>主键名称</returns>
