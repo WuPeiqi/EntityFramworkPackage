@@ -9,6 +9,9 @@ using System.Linq.Dynamic;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 using System.Reflection;
+using System.Data.Common;
+using EntityFramework.Extensions;
+using System.Linq.Expressions;
 namespace DataDAL
 {
     public class DaoTemplate
@@ -75,19 +78,29 @@ namespace DataDAL
         #endregion
 
         #region 删除记录
+
         public virtual int DeleteObject(object obj)
         {
             entityModel.DeleteObject(obj);
             return entityModel.SaveChanges();
         }
+
         public virtual int DeleteObject<T>(T obj) where T : EntityObject
         {
+            //entityModel.CreateObjectSet<T>().DeleteObject(obj);
             entityModel.DeleteObject(obj);
             return entityModel.SaveChanges();
         }
+
+        public virtual int DeleteObjects<T>(string filter, params object[] args) where T : class
+        {
+            return (entityModel.CreateObjectSet<T>() as IQueryable<T>).Where(filter, args).Delete();
+        }
+
         #endregion
 
-        #region 更新一条记录
+        #region 更新记录
+
         public virtual int UpdateObject(object obj)
         {
             entityModel.AttachTo(obj.GetType().Name, obj);
@@ -107,9 +120,15 @@ namespace DataDAL
 
             
         }
+
+        public virtual int UpdateObjects<T>(string filter, Expression<Func<T, T>> updateExpression, params object[] args) where T : class
+        {
+            return (entityModel.CreateObjectSet<T>() as IQueryable<T>).Where(filter, args).Update(updateExpression);
+        }
+        
         #endregion 
 
-        #region 查找一条记录
+        #region 查找记录
 
         public T GetObject<T>(string filter, params object[] args) where T : EntityObject
         {
@@ -130,8 +149,27 @@ namespace DataDAL
             return entity as T;
         }
 
-        #endregion
+        public ICollection<T> GetObjects<T>(string filter,params object[] args)where T:EntityObject
+        {
+            return entityModel.CreateObjectSet<T>().Where(filter, args).ToList();            
+        }
 
+        public virtual List<DbDataRecord> SelecteDataTable<T>(string filter, string orderbySelector, string selector, params ObjectParameter[] filterargs) where T : EntityObject
+        {
+            //AsNoTracking()
+            var qure = entityModel.CreateObjectSet<T>().Where(filter, filterargs).OrderBy(orderbySelector).Select(selector);
+            qure.MergeOption = System.Data.Objects.MergeOption.NoTracking;
+            return qure.ToList();
+
+            //return EM.CreateObjectSet<T>().Where(filter, filterargs).OrderBy(orderbySelector).Select(selector).ToList();            
+        }
+       
+        public virtual List<DbDataRecord> SelecteDataTable_Page<T>(int pageSize, int pageIndex, ref int RecordCount, string filter, string orderbySelector, string selector, params ObjectParameter[] filterargs) where T : EntityObject
+        {
+            RecordCount = (entityModel.CreateObjectSet<T>().Where(filter, filterargs)).Count();
+            return entityModel.CreateObjectSet<T>().Where(filter, filterargs).Select(selector).Skip(orderbySelector, "@skip", new ObjectParameter("skip", (pageIndex - 1) * pageSize)).Top("@limit", new ObjectParameter("limit", pageSize)).ToList();
+        }
+        #endregion
 
         #region 利用泛型委托执行方法
         
@@ -168,6 +206,9 @@ namespace DataDAL
         }
         
         #endregion
+
+
+
 
         /// <summary>
         /// 根据类型元数据获得一个实体的主键名称

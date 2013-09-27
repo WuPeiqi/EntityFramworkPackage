@@ -27,5 +27,12 @@ namespace EFDataExcutePacking
             T_User t = bllHelper.GetUser(5);
             return t;
         }
+
+        public static IEnumerable<T_User> GetUsers()
+        {
+            BllHelper bllHelper = new BllHelper();
+            IEnumerable<T_User> users = bllHelper.GetUsers();
+            return ExcuteData.GetUsers();
+        }
     }
 }
