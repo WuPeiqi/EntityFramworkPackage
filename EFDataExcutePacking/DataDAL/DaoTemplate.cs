@@ -50,11 +50,23 @@ namespace DataDAL
         }
 
         #region 添加记录
+        /// <summary>
+        /// 在表中插入一条数据
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
         public virtual int AddObject(object obj)
         {
             entityModel.AddObject(obj.GetType().Name, obj);
             return entityModel.SaveChanges();
         }
+
+        /// <summary>
+        /// 利用泛型在表中插入一条数据
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="entity"></param>
+        /// <returns></returns>
         public virtual int AddObjct<T>(T entity) where T : EntityObject
         {
             entityModel.AddObject(entity.GetType().Name, entity);
@@ -121,7 +133,8 @@ namespace DataDAL
         #endregion
 
 
-
+        #region 利用泛型委托执行方法
+        
         public int CallMethod<T>(Func<T, int> method, T param) where T : EntityObject
         {
             int ret = -1;
@@ -153,7 +166,8 @@ namespace DataDAL
             }
             return ret;
         }
-
+        
+        #endregion
 
         /// <summary>
         /// 获得一个实体的主键名称
