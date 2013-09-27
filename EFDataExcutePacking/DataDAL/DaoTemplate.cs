@@ -45,7 +45,8 @@ namespace DataDAL
         public void Commit()
         {
             //还有一个重载，参数是一个枚举。（用于保存到数据源后调用其他方法）
-            entityModel.SaveChanges();
+            entityModel.SaveChanges(SaveOptions.AcceptAllChangesAfterSave);
+            //entityModel.SaveChanges();
         }
 
         #region 添加记录
