@@ -9,8 +9,10 @@ namespace EFDataExcutePacking
     {
         static void Main(string[] args)
         {
-            BllHelper bll = new BllHelper();
-            int i = bll.UpdateUsers();
+            //BllHelper bll = new BllHelper();
+            //int i = bll.UpdateUsers();
+
+            Expres.ExcExpression();
            Console.ReadKey();
         }
     }
