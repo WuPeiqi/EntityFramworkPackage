@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="WuTestModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityContainer Name="WuTestModelStoreContainer">
+    <EntitySet Name="R_CourseAndUser" EntityType="WuTestModel.Store.R_CourseAndUser" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="T_Book" EntityType="WuTestModel.Store.T_Book" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="T_Course" EntityType="WuTestModel.Store.T_Course" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="T_User" EntityType="WuTestModel.Store.T_User" store:Type="Tables" Schema="dbo" />
+  </EntityContainer>
+  <EntityType Name="R_CourseAndUser">
+    <Key>
+      <PropertyRef Name="Nid" />
+    </Key>
+    <Property Name="Nid" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="CourseId" Type="int" />
+    <Property Name="UserId" Type="int" />
+  </EntityType>
+  <EntityType Name="T_Book">
+    <Key>
+      <PropertyRef Name="Nid" />
+    </Key>
+    <Property Name="Nid" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Book" Type="nvarchar" MaxLength="50" />
+    <Property Name="PublishDate" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="T_Course">
+    <Key>
+      <PropertyRef Name="Nid" />
+    </Key>
+    <Property Name="Nid" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Course" Type="nvarchar" MaxLength="50" />
+    <Property Name="Teacher" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="T_User">
+    <Key>
+      <PropertyRef Name="Nid" />
+    </Key>
+    <Property Name="Nid" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Address" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+</Schema>

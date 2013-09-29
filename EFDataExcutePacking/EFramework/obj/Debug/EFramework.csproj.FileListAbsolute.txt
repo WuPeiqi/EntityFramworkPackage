@@ -1,0 +1,11 @@
+F:\GitHub\EntityFramworkPackage\EFDataExcutePacking\EFramework\bin\Debug\EFramework.dll.config
+F:\GitHub\EntityFramworkPackage\EFDataExcutePacking\EFramework\bin\Debug\EFramework.dll
+F:\GitHub\EntityFramworkPackage\EFDataExcutePacking\EFramework\bin\Debug\EFramework.pdb
+F:\GitHub\EntityFramworkPackage\EFDataExcutePacking\EFramework\obj\Debug\EFramework.dll
+F:\GitHub\EntityFramworkPackage\EFDataExcutePacking\EFramework\obj\Debug\EFramework.pdb
+D:\WuPeiqi\GitHub\EntityFramworkPackage\EFDataExcutePacking\EFramework\bin\Debug\EFramework.dll.config
+D:\WuPeiqi\GitHub\EntityFramworkPackage\EFDataExcutePacking\EFramework\bin\Debug\EFramework.dll
+D:\WuPeiqi\GitHub\EntityFramworkPackage\EFDataExcutePacking\EFramework\bin\Debug\EFramework.pdb
+D:\WuPeiqi\GitHub\EntityFramworkPackage\EFDataExcutePacking\EFramework\obj\Debug\ResolveAssemblyReference.cache
+D:\WuPeiqi\GitHub\EntityFramworkPackage\EFDataExcutePacking\EFramework\obj\Debug\EFramework.dll
+D:\WuPeiqi\GitHub\EntityFramworkPackage\EFDataExcutePacking\EFramework\obj\Debug\EFramework.pdb

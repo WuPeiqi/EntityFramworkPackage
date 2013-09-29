@@ -9,7 +9,7 @@ namespace DataBll.Common
 {
     public class BllHelper
     {
-
+        #region 插入
         //执行DAL中的 普通方法
         public int InsertUser(Object obj)
         {
@@ -23,8 +23,9 @@ namespace DataBll.Common
             DaoTemplate dao = new DaoTemplate();
             return dao.CallMethod<T_User>(new Func<T_User, int>(dao.AddObject), user);
         }
+        #endregion
 
-
+        #region 获取
         public T_User GetUser(string filter, params object[] args)
         {
             DaoTemplate dao = new DaoTemplate();
@@ -42,11 +43,24 @@ namespace DataBll.Common
             DaoTemplate dao = new DaoTemplate();
             return dao.GetObjects<T_User>("Nid>@0", new object[] { 2 });
         }
+        #endregion
 
+        #region 删除
         public int DeleteUsers()
         {
             DaoTemplate dao = new DaoTemplate();
-            return dao.DeleteObjects<T_User>("Nid>@0", new Object[] {7 });
+            return dao.DeleteObjects<T_User>("Nid>@0", new Object[] {3 });
+        }
+
+        #endregion 
+
+        #region 更新
+        public int UpdateUser()
+        {
+            DaoTemplate dao = new DaoTemplate();
+            T_User user =new T_User{ Nid=1, Name="Tommy",Address="USA"};
+            return dao.UpdateObject<T_User>(user);
+
         }
 
         public int UpdateUsers()
@@ -63,6 +77,8 @@ namespace DataBll.Common
         //    var employees = repository.Query().Where(predicate);
         //    return View("Index", employees);
         //}
+
+        #endregion
 
     }
 }

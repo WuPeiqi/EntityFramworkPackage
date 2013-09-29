@@ -1,0 +1,9 @@
+F:\GitHub\EntityFramworkPackage\EFDataExcutePacking\DataDAL\bin\Debug\DataDAL.dll
+F:\GitHub\EntityFramworkPackage\EFDataExcutePacking\DataDAL\bin\Debug\DataDAL.pdb
+F:\GitHub\EntityFramworkPackage\EFDataExcutePacking\DataDAL\obj\Debug\DataDAL.dll
+F:\GitHub\EntityFramworkPackage\EFDataExcutePacking\DataDAL\obj\Debug\DataDAL.pdb
+D:\WuPeiqi\GitHub\EntityFramworkPackage\EFDataExcutePacking\DataDAL\bin\Debug\DataDAL.dll
+D:\WuPeiqi\GitHub\EntityFramworkPackage\EFDataExcutePacking\DataDAL\bin\Debug\DataDAL.pdb
+D:\WuPeiqi\GitHub\EntityFramworkPackage\EFDataExcutePacking\DataDAL\obj\Debug\ResolveAssemblyReference.cache
+D:\WuPeiqi\GitHub\EntityFramworkPackage\EFDataExcutePacking\DataDAL\obj\Debug\DataDAL.dll
+D:\WuPeiqi\GitHub\EntityFramworkPackage\EFDataExcutePacking\DataDAL\obj\Debug\DataDAL.pdb
