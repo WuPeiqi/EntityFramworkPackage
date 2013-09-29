@@ -1,0 +1,143 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="WuTestModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="WuTestModelStoreContainer">
+          <EntitySet Name="R_CourseAndUser" EntityType="WuTestModel.Store.R_CourseAndUser" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="T_Book" EntityType="WuTestModel.Store.T_Book" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="T_Course" EntityType="WuTestModel.Store.T_Course" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="T_User" EntityType="WuTestModel.Store.T_User" store:Type="Tables" Schema="dbo" />
+        </EntityContainer>
+        <EntityType Name="R_CourseAndUser">
+          <Key>
+            <PropertyRef Name="Nid" />
+          </Key>
+          <Property Name="Nid" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="CourseId" Type="int" />
+          <Property Name="UserId" Type="int" />
+        </EntityType>
+        <EntityType Name="T_Book">
+          <Key>
+            <PropertyRef Name="Nid" />
+          </Key>
+          <Property Name="Nid" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Book" Type="nvarchar" MaxLength="50" />
+          <Property Name="PublishDate" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="T_Course">
+          <Key>
+            <PropertyRef Name="Nid" />
+          </Key>
+          <Property Name="Nid" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Course" Type="nvarchar" MaxLength="50" />
+          <Property Name="Teacher" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="T_User">
+          <Key>
+            <PropertyRef Name="Nid" />
+          </Key>
+          <Property Name="Nid" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Address" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="WuTestModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="WuTestEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="R_CourseAndUser" EntityType="WuTestModel.R_CourseAndUser" />
+          <EntitySet Name="T_Book" EntityType="WuTestModel.T_Book" />
+          <EntitySet Name="T_Course" EntityType="WuTestModel.T_Course" />
+          <EntitySet Name="T_User" EntityType="WuTestModel.T_User" />
+        </EntityContainer>
+        <EntityType Name="R_CourseAndUser">
+          <Key>
+            <PropertyRef Name="Nid" />
+          </Key>
+          <Property Name="Nid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CourseId" Type="Int32" />
+          <Property Name="UserId" Type="Int32" />
+        </EntityType>
+        <EntityType Name="T_Book">
+          <Key>
+            <PropertyRef Name="Nid" />
+          </Key>
+          <Property Name="Nid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Book" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="PublishDate" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="T_Course">
+          <Key>
+            <PropertyRef Name="Nid" />
+          </Key>
+          <Property Name="Nid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Course" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Teacher" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="T_User">
+          <Key>
+            <PropertyRef Name="Nid" />
+          </Key>
+          <Property Name="Nid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Address" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="WuTestModelStoreContainer" CdmEntityContainer="WuTestEntities">
+          <EntitySetMapping Name="R_CourseAndUser"><EntityTypeMapping TypeName="WuTestModel.R_CourseAndUser"><MappingFragment StoreEntitySet="R_CourseAndUser">
+            <ScalarProperty Name="Nid" ColumnName="Nid" />
+            <ScalarProperty Name="CourseId" ColumnName="CourseId" />
+            <ScalarProperty Name="UserId" ColumnName="UserId" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="T_Book"><EntityTypeMapping TypeName="WuTestModel.T_Book"><MappingFragment StoreEntitySet="T_Book">
+            <ScalarProperty Name="Nid" ColumnName="Nid" />
+            <ScalarProperty Name="Book" ColumnName="Book" />
+            <ScalarProperty Name="PublishDate" ColumnName="PublishDate" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="T_Course"><EntityTypeMapping TypeName="WuTestModel.T_Course"><MappingFragment StoreEntitySet="T_Course">
+            <ScalarProperty Name="Nid" ColumnName="Nid" />
+            <ScalarProperty Name="Course" ColumnName="Course" />
+            <ScalarProperty Name="Teacher" ColumnName="Teacher" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="T_User"><EntityTypeMapping TypeName="WuTestModel.T_User"><MappingFragment StoreEntitySet="T_User">
+            <ScalarProperty Name="Nid" ColumnName="Nid" />
+            <ScalarProperty Name="Name" ColumnName="Name" />
+            <ScalarProperty Name="Address" ColumnName="Address" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="MyEntityModel">
+        <EntityTypeShape EntityType="WuTestModel.R_CourseAndUser" Width="1.5" PointX="0.75" PointY="0.75" Height="1.45359375" IsExpanded="true" />
+        <EntityTypeShape EntityType="WuTestModel.T_Book" Width="1.5" PointX="2.75" PointY="0.75" Height="1.4535937499999996" IsExpanded="true" />
+        <EntityTypeShape EntityType="WuTestModel.T_Course" Width="1.5" PointX="0.75" PointY="3.75" Height="1.4535937499999996" IsExpanded="true" />
+        <EntityTypeShape EntityType="WuTestModel.T_User" Width="1.5" PointX="2.75" PointY="3.75" Height="1.4535937499999996" IsExpanded="true" />
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>
