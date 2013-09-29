@@ -1,4 +1,0 @@
-F:\GitHub\EntityFramworkPackage\EFDataExcutePacking\DataDAL\bin\Debug\DataDAL.dll
-F:\GitHub\EntityFramworkPackage\EFDataExcutePacking\DataDAL\bin\Debug\DataDAL.pdb
-F:\GitHub\EntityFramworkPackage\EFDataExcutePacking\DataDAL\obj\Debug\DataDAL.dll
-F:\GitHub\EntityFramworkPackage\EFDataExcutePacking\DataDAL\obj\Debug\DataDAL.pdb
