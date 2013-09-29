@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using DataBll.Common;
+using System.Linq.Expressions;
+using EFramework;
 namespace EFDataExcutePacking
 {
     class Program
@@ -10,7 +12,9 @@ namespace EFDataExcutePacking
         static void Main(string[] args)
         {
             BllHelper bll = new BllHelper();
-            int i = bll.UpdateUser();
+            Expression<Func<T_User, bool>> expression = user => user.Nid > 1;
+            bll.DeleteUsers(expression);
+
 
           // Expres.ExcExpression();
            Console.ReadKey();

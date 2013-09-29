@@ -30,7 +30,7 @@ namespace DataDAL
 
         private ObjectContext _EntityModel = null;
 
-        private ObjectContext entityModel
+        internal ObjectContext entityModel
         {
             get
             {
@@ -52,17 +52,8 @@ namespace DataDAL
             entityModel.SaveChanges();
         }
 
+
         #region 添加记录
-        /// <summary>
-        /// 在表中插入一条数据
-        /// </summary>
-        /// <param name="obj"></param>
-        /// <returns></returns>
-        public virtual int AddObject(object obj)
-        {
-            entityModel.AddObject(obj.GetType().Name, obj);
-            return entityModel.SaveChanges();
-        }
 
         /// <summary>
         /// 利用泛型在表中插入一条数据
@@ -70,43 +61,82 @@ namespace DataDAL
         /// <typeparam name="T"></typeparam>
         /// <param name="entity"></param>
         /// <returns></returns>
-        public virtual int AddObjct<T>(T entity) where T : EntityObject
+        public virtual int AddObject<T>(T entity) where T : EntityObject
         {
             entityModel.AddObject(entity.GetType().Name, entity);
             return entityModel.SaveChanges();
         }
+
+
+        /// <summary>
+        /// 插入一条数据
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="entity"></param>
+        /// <returns></returns>
+        public virtual int AddObject_CreateObjectSet<T>(T entity) where T : EntityObject
+        {
+            entityModel.CreateObjectSet<T>().AddObject(entity);
+            return entityModel.SaveChanges();
+        }
+
+
+        /// <summary>
+        /// 插入一条数据
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="entity"></param>
+        /// <returns></returns>
+        public virtual int AddObject_Attach<T>(T entity) where T : EntityObject
+        {
+            //状态为Detached:对象存在，但没有被跟踪。 在创建实体之后、但将其添加到对象上下文之前，该实体处于此状态
+            entityModel.AttachTo(entity.GetType().Name, entity);//将对象附加到对象上下文
+            //状态为Unchanged: 此对象尚未经过修改附加到上下文中后，或自上次调用 (调用了SaveChange方法后所有的对象都改为Unchanged状态)
+            
+            entityModel.ObjectStateManager.ChangeObjectState(entity, EntityState.Added);
+            //状态为Added：对象为新对象，并且已添加到对象上下文，但尚未调用 
+
+            return entityModel.SaveChanges();
+        }
+
         #endregion
+
 
         #region 删除记录
 
-        public virtual int DeleteObject(object obj)
-        {
-            entityModel.DeleteObject(obj);
-            return entityModel.SaveChanges();
-        }
-
         public virtual int DeleteObject<T>(T obj) where T : EntityObject
         {
-            //entityModel.CreateObjectSet<T>().DeleteObject(obj);
             entityModel.DeleteObject(obj);
             return entityModel.SaveChanges();
         }
 
-        public virtual int DeleteObjects<T>(string filter, params object[] args) where T : class
+        public virtual int DeleteObject_CreateObjectSet<T>(T obj) where T : EntityObject
+        {
+            entityModel.CreateObjectSet<T>().DeleteObject(obj);
+            return entityModel.SaveChanges();
+        }
+
+        public virtual int DeleteObject_Attach<T>(T obj) where T : EntityObject
+        {
+
+            entityModel.AttachTo(obj.GetType().Name, obj);
+            entityModel.ObjectStateManager.ChangeObjectState(obj, EntityState.Deleted);
+            return entityModel.SaveChanges();
+        }
+
+        public virtual int DeleteObjects<T>(string filter, params object[] args) where T : EntityObject
         {
             return (entityModel.CreateObjectSet<T>() as IQueryable<T>).Where(filter, args).Delete();
         }
 
+        public virtual int DeleteObjects<T>(Expression<Func<T,bool>> deleteExpression) where T : EntityObject
+        {
+            return (entityModel.CreateObjectSet<T>() as IQueryable<T>).Delete(deleteExpression);
+        }
         #endregion
 
         #region 更新记录
 
-        public virtual int UpdateObject(object obj)
-        {
-            entityModel.AttachTo(obj.GetType().Name, obj);
-            entityModel.ObjectStateManager.ChangeObjectState(obj, EntityState.Modified);
-            return entityModel.SaveChanges();
-        }
         public virtual int UpdateObject<T>(T obj) where T : EntityObject
         {
             //如果想调用Attach方法的话，需要 entityModel.T_User.Attach();   也就是这里需要指明实体
@@ -125,7 +155,12 @@ namespace DataDAL
         {
             return (entityModel.CreateObjectSet<T>() as IQueryable<T>).Where(filter, args).Update(updateExpression);
         }
-        
+
+        public virtual int UpdateObjects<T>(Expression<Func<T, bool>> filterExpression, Expression<Func<T, T>> updateExpression) where T : class
+        {
+            return (entityModel.CreateObjectSet<T>() as IQueryable<T>).Update<T>(filterExpression, updateExpression);
+        }
+
         #endregion 
 
         #region 查找记录
@@ -173,7 +208,7 @@ namespace DataDAL
 
         #region 利用泛型委托执行方法
         
-        public int CallMethod<T>(Func<T, int> method, T param) where T : EntityObject
+        public int CallMethod<T>(Func<T, int> method, T param)
         {
             int ret = -1;
             try
@@ -189,22 +224,7 @@ namespace DataDAL
 
             return ret;
         }
-
-        public int CallMethod(Func<object, int> method, Object obj)
-        {
-            int ret = -1;
-            try
-            {
-                ret = method(obj);
-
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.ToString());
-            }
-            return ret;
-        }
-        
+     
         #endregion
 
 

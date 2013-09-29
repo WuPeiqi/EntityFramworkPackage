@@ -10,13 +10,6 @@ namespace DataBll.Common
     public class BllHelper
     {
         #region 插入
-        //执行DAL中的 普通方法
-        public int InsertUser(Object obj)
-        {
-            DaoTemplate dao = new DaoTemplate();
-            return dao.CallMethod(new Func<Object, int>(dao.AddObject), obj);
-        }
-
         //执行DAL中的 泛型方法
         public int InsertUser(T_User user)
         {
@@ -46,10 +39,16 @@ namespace DataBll.Common
         #endregion
 
         #region 删除
-        public int DeleteUsers()
+        public int DeleteUsers(string filter,params Object[] args)
         {
             DaoTemplate dao = new DaoTemplate();
-            return dao.DeleteObjects<T_User>("Nid>@0", new Object[] {3 });
+            return dao.DeleteObjects<T_User>(filter, args);
+        }
+
+        public int DeleteUsers(Expression<Func<T_User,bool>> expression)
+        {
+            DaoTemplate dao = new DaoTemplate();
+            return dao.DeleteObjects<T_User>(expression);
         }
 
         #endregion 
@@ -80,5 +79,21 @@ namespace DataBll.Common
 
         #endregion
 
+        #region Attach
+        public int AttachAdd()
+        {
+            DaoTemplate dao = new DaoTemplate();
+            T_User user=new T_User{ Name="attach", Address="BBS"};
+            return dao.AddObject_Attach<T_User>(user);
+        }
+
+
+        public int AttachDelete()
+        {
+            DaoTemplate dao = new DaoTemplate();
+            T_User user = new T_User { Nid=18, Name = "attach", Address = "BBS" };
+            return dao.DeleteObject_Attach<T_User>(user);
+        }
+        #endregion
     }
 }
