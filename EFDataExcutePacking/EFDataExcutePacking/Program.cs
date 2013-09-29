@@ -12,11 +12,11 @@ namespace EFDataExcutePacking
         static void Main(string[] args)
         {
             BllHelper bll = new BllHelper();
-            Expression<Func<T_User, bool>> expression = user => user.Nid > 1;
-            bll.DeleteUsers(expression);
+            //Expression<Func<T_User, bool>> expression = user => user.Nid > 1;
+            //bll.DeleteUsers(expression);
+            bll.Test();
 
-
-          // Expres.ExcExpression();
+           //Expres.ExcExpression();
            Console.ReadKey();
         }
     }

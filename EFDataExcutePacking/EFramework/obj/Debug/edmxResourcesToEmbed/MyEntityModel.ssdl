@@ -34,7 +34,7 @@
     <Key>
       <PropertyRef Name="Nid" />
     </Key>
-    <Property Name="Nid" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Nid" Type="int" Nullable="false" />
     <Property Name="Name" Type="nvarchar" MaxLength="50" />
     <Property Name="Address" Type="nvarchar" MaxLength="50" />
   </EntityType>

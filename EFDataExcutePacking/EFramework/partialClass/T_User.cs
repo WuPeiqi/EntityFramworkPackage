@@ -5,7 +5,8 @@ using System.Text;
 
 namespace EFramework
 {
-    public class Class1
+    partial class T_User
     {
+        public string KKK { set; get; }
     }
 }

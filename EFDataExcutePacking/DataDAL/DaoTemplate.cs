@@ -101,7 +101,6 @@ namespace DataDAL
 
         #endregion
 
-
         #region 删除记录
 
         public virtual int DeleteObject<T>(T obj) where T : EntityObject
@@ -206,15 +205,15 @@ namespace DataDAL
         }
         #endregion
 
-        #region 利用泛型委托执行方法
-        
+        #region 利用泛型委托执行方法，内涵 try和 事务TransactionScope
+
         public int CallMethod<T>(Func<T, int> method, T param)
         {
             int ret = -1;
             try
             {
-                ret = method(param);
-
+                    ret = method(param);
+                
             }
             catch (Exception ex)
             {
@@ -224,10 +223,30 @@ namespace DataDAL
 
             return ret;
         }
-     
+
+        public int CallMethod<T>(Func<T, int> method, params T[] param)
+        {
+            int ret = 0;
+            using (TransactionScope tran = new TransactionScope())
+            {
+                try
+                {
+                    foreach (T t in param)
+                    {
+                        ret = ret + method(t);
+                    }
+                    tran.Complete();
+                    //TransactionScope其实就是：最后调用Complete方法后才提交给数据库
+                }
+                catch (Exception ex)
+                {
+                    tran.Dispose();
+                }
+
+            }
+            return ret;
+        }
         #endregion
-
-
 
 
         /// <summary>
