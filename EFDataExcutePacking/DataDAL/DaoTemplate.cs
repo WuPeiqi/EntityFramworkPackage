@@ -30,7 +30,7 @@ namespace DataDAL
 
         private ObjectContext _EntityModel = null;
 
-        private ObjectContext entityModel
+        internal ObjectContext entityModel
         {
             get
             {
@@ -49,6 +49,12 @@ namespace DataDAL
         {
             //还有一个重载，参数是一个枚举。（用于保存到数据源后调用其他方法）
             //entityModel.SaveChanges(SaveOptions.AcceptAllChangesAfterSave);
+
+            //AcceptAllChangesAfterSave：就是把数据保存到数据库以后重置实体的状态。
+            //DetectChangesBeforeSave：就是把数据保存到数据库之前同步实体的状态。
+            //None：就是把数据保存到数据库之前，不同步实体的状态；把数据保存到数据库以后，也不重置实体的状态。
+            //调用SaveChanges（）就等同于SaveChanges(SaveOptions.AcceptAllChangesAfterSave | SaveOptions.DetectChangesBeforeSave);
+            
             entityModel.SaveChanges();
         }
 
@@ -74,6 +80,12 @@ namespace DataDAL
         {
             entityModel.AddObject(entity.GetType().Name, entity);
             return entityModel.SaveChanges();
+        }
+
+        public virtual int AddObjct_CallBack<T>(T entity) where T : EntityObject
+        {
+            entityModel.AddObject(entity.GetType().Name, entity);
+            return entityModel.SaveChanges(SaveOptions.AcceptAllChangesAfterSave);
         }
         #endregion
 
@@ -206,9 +218,6 @@ namespace DataDAL
         }
         
         #endregion
-
-
-
 
         /// <summary>
         /// 根据类型元数据获得一个实体的主键名称

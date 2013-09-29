@@ -10,7 +10,8 @@ namespace EFDataExcutePacking
         static void Main(string[] args)
         {
             BllHelper bll = new BllHelper();
-            int i = bll.UpdateUsers();
+            Object i = bll.ExcuteCmd();
+
            Console.ReadKey();
         }
     }
