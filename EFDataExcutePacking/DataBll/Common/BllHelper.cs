@@ -55,7 +55,14 @@ namespace DataBll.Common
             //Expression是一个表达式，编译应该变成SQL语句
             Expression<Func<T_User, T_User>> predicate = user1 => new T_User { Name ="111" };
             return dao.UpdateObjects<T_User>("Nid>@0", predicate, new Object[] { 2 });
+
         }
+        //如下面的代码所示，表达式的参数为Employee类型，而调用此方法时并没有传入参数，而是在方法内通过 参数的.Where来使用表达式的
+        //public ActionResult Index3(Expression<Func<Employee, bool>> predicate)
+        //{
+        //    var employees = repository.Query().Where(predicate);
+        //    return View("Index", employees);
+        //}
 
     }
 }
