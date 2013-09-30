@@ -1,0 +1,6 @@
+
+----------------------header--------------------------
+2013-09-30 16:58:43,062 [10] DEBUG Log4NetTest.LogTest - bbbbb
+2013-09-30 16:58:43,062 [10] DEBUG Log4NetTest.LogTest - bbbbb
+2013-09-30 16:58:43,062 [10] DEBUG Log4NetTest.LogTest - oooooo
+2013-09-30 16:58:43,062 [10] DEBUG Log4NetTest.LogTest - oooooo

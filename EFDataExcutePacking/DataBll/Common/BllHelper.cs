@@ -97,19 +97,19 @@ namespace DataBll.Common
         }
         #endregion
 
-        public void Test()
+        public void TestTransation()
         {
             DaoTemplate dao = new DaoTemplate();
             int i = 0;
-            T_User user1 = new T_User { Nid = 13, Name = "11", Address = "111" };
-            T_User user2 = new T_User { Nid = 14, Name = "22", Address = "222" };
+            T_User user1 = new T_User { Nid = 15, Name = "11", Address = "111" };
+            T_User user2 = new T_User { Nid = 15, Name = "22", Address = "222" };
             T_User user3 = new T_User { Nid = 1, Name = "33", Address = "333" };
             T_User[] users = new T_User[3];
             users[0] = user1;
             users[1] = user2;
             users[2] = user3;
 
-            dao.CallMethod<T_User>(new Func<T_User, int>(dao.AddObject), users);
+            dao.CallMethod_TranCommit<T_User>(new Func<T_User, int>(dao.AddObject), users);
 
         }
     }

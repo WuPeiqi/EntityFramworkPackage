@@ -6,7 +6,7 @@ using System.Data.Common;
 
 namespace DataDAL
 {
-    public  static class DaoTemplateExtend
+    public  static class DaoTemplateExtendCmd
     {
         //扩展方法必须在非泛型的静态类中=扩展类必须是静态and非泛型
         //扩展方法必须是静态的

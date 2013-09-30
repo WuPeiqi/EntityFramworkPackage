@@ -14,10 +14,11 @@ namespace EFDataExcutePacking
             BllHelper bll = new BllHelper();
             //Expression<Func<T_User, bool>> expression = user => user.Nid > 1;
             //bll.DeleteUsers(expression);
-            bll.Test();
-
-           //Expres.ExcExpression();
-           Console.ReadKey();
+            //bll.TestTransation(); //测试事务
+            //Expres.ExcExpression();
+            Log4Test.WriteLog();
+            
+            Console.ReadKey();
         }
     }
 }

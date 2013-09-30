@@ -205,50 +205,6 @@ namespace DataDAL
         }
         #endregion
 
-        #region 利用泛型委托执行方法，内涵 try和 事务TransactionScope
-
-        public int CallMethod<T>(Func<T, int> method, T param)
-        {
-            int ret = -1;
-            try
-            {
-                    ret = method(param);
-                
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.ToString());
-            }
-
-
-            return ret;
-        }
-
-        public int CallMethod<T>(Func<T, int> method, params T[] param)
-        {
-            int ret = 0;
-            using (TransactionScope tran = new TransactionScope())
-            {
-                try
-                {
-                    foreach (T t in param)
-                    {
-                        ret = ret + method(t);
-                    }
-                    tran.Complete();
-                    //TransactionScope其实就是：最后调用Complete方法后才提交给数据库
-                }
-                catch (Exception ex)
-                {
-                    tran.Dispose();
-                }
-
-            }
-            return ret;
-        }
-        #endregion
-
-
         /// <summary>
         /// 根据类型元数据获得一个实体的主键名称
         /// </summary>

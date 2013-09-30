@@ -26,3 +26,4 @@ D:\WuPeiqi\GitHub\EntityFramworkPackage\EFDataExcutePacking\EFDataExcutePacking\
 D:\WuPeiqi\GitHub\EntityFramworkPackage\EFDataExcutePacking\EFDataExcutePacking\obj\x86\Debug\ResolveAssemblyReference.cache
 D:\WuPeiqi\GitHub\EntityFramworkPackage\EFDataExcutePacking\EFDataExcutePacking\obj\x86\Debug\EFDataExcutePacking.exe
 D:\WuPeiqi\GitHub\EntityFramworkPackage\EFDataExcutePacking\EFDataExcutePacking\obj\x86\Debug\EFDataExcutePacking.pdb
+D:\WuPeiqi\GitHub\EntityFramworkPackage\EFDataExcutePacking\EFDataExcutePacking\bin\Debug\log4net.dll
